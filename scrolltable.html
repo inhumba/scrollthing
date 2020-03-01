@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Scroll Table</title>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="inhumba">
+		<meta name="description" content="Scroll Table">
+		<style>
+			html {
+				background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+				height: 100vh;
+			}
+			h1 {
+				color: #5face5;
+				font-size: 2em;
+				margin: 100px 0 20px;
+				text-align: center;
+			}
+			td {
+				background-color: #ffacef;
+				color: #333;
+				text-align: center;
+			}
+			a {
+				background-color: #5face5;
+				border-radius: 3px;
+				color: #fff;
+				display: block;
+				padding: 3px 6px;
+				text-decoration: none;
+			}
+
+			/* SCROLL TABLE */
+			:root {
+				--wrapper-width: auto;
+				--col-fixed-width: 80px;
+				--col-2-fixed-width:  80px;
+				--col-border:  20px;
+			}
+			.scroll-table {
+				background-color: #fff;
+				border: 4px solid #5face5;
+				display: block;
+				margin: 50px auto;
+				width: var(--wrapper-width);
+			}
+			.table-wrapper {
+				position: relative;
+			}
+			.table-scroller {
+				margin-left: calc(var(--col-fixed-width) + var(--col-2-fixed-width) + var(--col-border));
+				overflow-x: scroll;
+				overflow-y: visible;
+				width: calc(var(--wrapper-width) - var(--col-fixed-width) - var(--col-2-fixed-width) - var(--col-border));
+			}
+			.table-sticky-col {
+				background-color: #ffacc0;
+				position: absolute;
+				top: auto;
+				left: 0;
+				width: var(--col-fixed-width);
+			}
+			.table-sticky-col-2 {
+				background-color: #ffacc0;
+				border-right: 2px solid #fff !important;
+				position: absolute;
+				top: auto;
+				left: var(--col-fixed-width);
+				width: var(--col-2-fixed-width);
+			}
+			.table-data {
+				border: none;
+				font-size: 14px;
+			}
+			.table-data th {
+				font-size: 16px;
+				padding: 5px 10px;
+				white-space: nowrap;
+			}
+			.table-data td {
+				border: none;
+				height: 50px;
+				padding: 5px 10px;
+				white-space: nowrap;
+			}
+
+			@media only screen and (min-width: 768px) {
+				:root {
+					--col-fixed-width: 120px;
+					--col-2-fixed-width:  100px;
+					--col-border:  40px;
+				}
+				.table-data th, .table-data td {
+					padding: 10px 20px;
+				}
+			}
+
+			@media only screen and (min-width: 1200px) {
+				:root {
+					--wrapper-width: 1000px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="site-wrapper" id="page">
+			<div class="site-content" id="content">
+
+				<header>
+					<h1>Scroll Bar on Table</h1>
+				</header>
+
+				<section class="scroll-table">
+					<div class="table-wrapper">
+						<div class="table-scroller">
+							<table class="table-data">
+								<thead>
+									<tr>
+										<th class="table-sticky-col">บริษัท</th>
+										<th class="table-sticky-col-2">แผน</th>
+										<th>เบี้ย</th>
+										<th>ค่ารักษา</th>
+										<th>เสียชีวิต</th>
+										<th>ค่าปลงศพ</th>
+										<th>เจอจ่าย</th>
+										<th>ชดเชยนอน รพ.</th>
+										<th>หมายเหตุ</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="table-sticky-col">ทิพยะ</td>
+										<td class="table-sticky-col-2">แผน 3<a href="#">เลือกแผนนี้</a></td>
+										<td>450</td>
+										<td>50,000</td>
+										<td>500,000</td>
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+									</tr>
+									<tr>
+										<td class="table-sticky-col">&nbsp;</td>
+										<td class="table-sticky-col-2">แผน 4<a href="#">เลือกแผนนี้</a></td>
+										<td>850</td>
+										<td>100,000</td>
+										<td>1,000,000</td>
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+									</tr>
+									<tr>
+										<td class="table-sticky-col">สินทรัพย์</td>
+										<td class="table-sticky-col-2">แผน 3<a href="#">เลือกแผนนี้</a></td>
+										<td>299</td>
+										<td>-</td>
+										<td>6,000</td>
+										<td>6,000*</td>
+										<td>50,000</td>
+										<td>-</td>
+										<td>*ค่าปลงศพเสียชีวิตจากอุบัติเหตุ</td>
+									</tr>
+									<tr>
+										<td class="table-sticky-col">&nbsp;</td>
+										<td class="table-sticky-col-2">แผน 4<a href="#">เลือกแผนนี้</a></td>
+										<td>499</td>
+										<td>-</td>
+										<td>8,000</td>
+										<td>8,000*</td>
+										<td>100,000</td>
+										<td>-</td>
+										<td>*ค่าปลงศพเสียชีวิตจากอุบัติเหตุ</td>
+									</tr>
+									<tr>
+										<td class="table-sticky-col">สินมั่นคง</td>
+										<td class="table-sticky-col-2">แผน 2<a href="#">เลือกแผนนี้</a></td>
+										<td>450</td>
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+										<td>100,000</td>
+										<td>-</td>
+										<td>-</td>
+									</tr>
+									<tr>
+										<td class="table-sticky-col">วิริยะ</td>
+										<td class="table-sticky-col-2">ชีลด์ แผน 1<a href="#">เลือกแผนนี้</a></td>
+										<td>299</td>
+										<td>-</td>
+										<td>100,000*</td>
+										<td>-</td>
+										<td>30,000</td>
+										<td>300/วัน**</td>
+										<td>*เสียชีวิตจากอุบัติเหตุ อบ.1<br>**เงินชดเชยสูงสุด 14 วัน</td>
+									</tr>
+									<tr>
+										<td class="table-sticky-col">&nbsp;</td>
+										<td class="table-sticky-col-2">ชีลด์ แผน 2<a href="#">เลือกแผนนี้</a></td>
+										<td>389</td>
+										<td>-</td>
+										<td>100,000*</td>
+										<td>-</td>
+										<td>50,000</td>
+										<td>300/วัน**</td>
+										<td>*เสียชีวิตจากอุบัติเหตุ อบ.1<br>**เงินชดเชยสูงสุด 14 วัน</td>
+									</tr>
+									<tr>
+										<td class="table-sticky-col">&nbsp;</td>
+										<td class="table-sticky-col-2">ชีลด์ แผน 3<a href="#">เลือกแผนนี้</a></td>
+										<td>599</td>
+										<td>-</td>
+										<td>100,000*</td>
+										<td>-</td>
+										<td>100,000</td>
+										<td>300/วัน**</td>
+										<td>*เสียชีวิตจากอุบัติเหตุ อบ.1<br>**เงินชดเชยสูงสุด 14 วัน</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+
+			</div>
+		</div>
+		</script>
+	</body>
+</html>
