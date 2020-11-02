@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Scroll Snap Vertical</title>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="inhumba">
+		<meta name="description" content="Scroll Snap Vertical">
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			/*html {
+				background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+				height: 100vh;
+			}
+			h1 {
+				color: #5face5;
+				font-size: 2em;
+				margin: 20px 0 20px;
+				text-align: center;
+			}*/
+
+			/* SCROLL SNAP */
+			.parent {
+				background-color: #1b1f19;
+				--scroll-gap: 2em;
+				height: 100vh;
+				overflow: auto;
+				padding: var(--scroll-gap);
+				scroll-snap-type: y mandatory;
+			}
+
+			.child {
+				scroll-snap-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: calc(100vh - 3 * var(--scroll-gap));
+				border-radius: 0.4em;
+				padding: 1.25em;
+				box-shadow: 0 0.9px 1.5px rgba(0, 0, 0, 0.03), 0 3.1px 5.5px rgba(0, 0, 0, 0.08), 0 14px 25px rgba(0, 0, 0, 0.12);
+			}
+			.child:not(:last-child) {
+				margin-bottom: var(--scroll-gap);
+			}
+			.child:nth-child(1) {
+				background-color: #d74247;
+			}
+			.child:nth-child(1) h2 {
+				color: #ebfffa;
+			}
+			.child:nth-child(2) {
+				background-color: #9ed8db;
+			}
+			.child:nth-child(2) h2 {
+				color: #0c0f0a;
+			}
+			.child:nth-child(3) {
+				background-color: #33648a;
+			}
+			.child:nth-child(3) h2 {
+				color: #ebfffa;
+			}
+			.child:nth-child(4) {
+				background-color: #1d3354;
+			}
+			.child:nth-child(4) h2 {
+				color: #ebfffa;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="site-wrapper" id="page">
+			<div class="site-content" id="content">
+
+				<main class="parent">
+					<section class="child"><h2>One</h2></section>
+					<section class="child"><h2>Two</h2></section>
+					<section class="child"><h2>Three</h2></section>
+					<section class="child"><h2>Four</h2></section>
+				</main>
+
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script>
+			$(function(){
+				$('.scroll-top').scroll(function(){
+					$('.scroll-content').scrollLeft($('.scroll-top').scrollLeft());
+				});
+				$('.scroll-content').scroll(function(){
+					$('.scroll-top').scrollLeft($('.scroll-content').scrollLeft());
+				});
+			});
+		</script>
+	</body>
+</html>
